@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Matting</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Image Matting</h1>
+        <h2>Upload Image</h2>
+        <form action="/predict" method="post" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/*" required>
+            <button type="submit">Generate Matte</button>
+        </form>
+        
+        <!-- Results -->
+        {% if result %}
+        <h3>Result: {{ result }}</h3>
+        {% endif %}
+        {% if image_url %}
+        <h4>Input Image:</h4>
+        <img src="{{ image_url }}" alt="Input Image" width="300">
+        {% endif %}
+        {% if matte_url %}
+        <h4>Alpha Matte:</h4>
+        <img src="{{ matte_url }}" alt="Alpha Matte" width="300">
+        {% endif %}
+    </div>
+</body>
+</html>
